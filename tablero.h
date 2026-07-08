@@ -27,3 +27,5 @@ bool realizarDisparoIa(int tablero[TAM][TAM]);
 #define RED "\033[31m"    // Impacto (X)
 #define YELLOW "\033[33m" // Fallo / agua disparada (O)
 #define CYAN "\033[36m"   // Uso general / títulos
+#define MAGENTA "\033[35m" // Uso general / marco de tablero
+

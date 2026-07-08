@@ -35,42 +35,50 @@ void mostrarTablero(int tablero[TAM][TAM], bool ocultar)
 {
     // 1. Imprimir cabecera con los numeros de columna
     cout << endl
-         << "-/-/";
+         << "    ";
     for (int i = 0; i < TAM; i++)
     {
-        cout << i << " ";
+        cout <<CYAN << i <<RESET << " ";
     }
     cout << endl;
     // 2. Recorrer filas
     for (int i = 0; i < TAM; i++)
     {
-        cout << i << " |";
+        cout <<MAGENTA << i << " |"<< RESET;
         // 3. Recorrer columnas
         for (int j = 0; j < TAM; j++)
         {
             if (ocultar && tablero[i][j] == 1)
             {
-
+                cout << BLUE;
                 cout << " ~";
+                cout << RESET;
             }
             else if (tablero[i][j] == 1)
             {
+                cout << GREEN;
                 cout << " B";
+                cout << RESET;
             }
             else if (tablero[i][j] == 2)
             {
                 // usar color rojo para X
+                cout << RED;
                 cout << " X";
+                cout << RESET;
             }
             else if (tablero[i][j] == 3)
             {
 
-                cout << " 0";
+                cout << YELLOW;
+                cout << " O";
+                cout << RESET;
             }
             else
             {
-
+                cout << BLUE;
                 cout << " ~";
+                cout << RESET;
             }
         }
         cout << endl;
