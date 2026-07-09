@@ -52,7 +52,7 @@ void turnoJugador()
             {
                 disparoValido = true;
                 turnoJugadorActivo = false; // Cambiar turno a la computadora
-                limpiarConsola();
+                //limpiarConsola();
                 cout << "Presiona Enter para continuar...\n";
                 cin.ignore();
                 cin.get();
