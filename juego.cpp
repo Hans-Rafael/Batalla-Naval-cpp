@@ -47,16 +47,28 @@ void turnoJugador()
         cin >> y;
         if (x >= 0 && x < TAM && y >= 0 && y < TAM && tableroOponente[x][y] != 2 && tableroOponente[x][y] != 3)
         {
-            realizarDisparo(tableroOponente, x, y);
-            disparoValido = true;
-            turnoJugadorActivo = false; // Cambiar turno a la computadora
+
+            if (realizarDisparo(tableroOponente, x, y) == false)
+            {
+                disparoValido = true;
+                turnoJugadorActivo = false; // Cambiar turno a la computadora
+                limpiarConsola();
+                cout << "Presiona Enter para continuar...\n";
+                cin.ignore();
+                cin.get();
+            }
+            else
+            {
+                disparoValido = true;
+                limpiarConsola();
+            }
         }
         else
         {
             limpiarConsola();
-            cout<<RED;
+            cout << RED;
             cout << "Coordenadas invalidas. Intenta de nuevo.\n";
-            cout<<RESET;
+            cout << RESET;
         }
     }
 }

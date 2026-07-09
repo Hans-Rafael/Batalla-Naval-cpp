@@ -179,18 +179,18 @@ bool realizarDisparo(int tablero[TAM][TAM], int x, int y)
     if (tablero[x][y] == 1)
     {
         tablero[x][y] = 2;
-        cout << "Impacto!" << endl;
+        cout << "\n Impacto! \n" << endl;
         return true;
     }
     else if (tablero[x][y] == 0)
     {
         tablero[x][y] = 3;
-        cout << "Agua!" << endl;
+        cout << "\n Agua! \n" << endl;
         return false;
     }
     else
     {
-        cout << "Ya disparaste en esta casilla." << endl;
+        cout << "\n Ya disparaste en esta casilla. \n" << endl;
         return false;
     }
 }
@@ -217,13 +217,13 @@ bool realizarDisparoIa(int tablero[TAM][TAM])
     if (tablero[x][y] == 1)
     {
         tablero[x][y] = 2;
-        cout << "La computadora impacto uno de tus barcos!" << endl;
+        cout << "\n La computadora impacto uno de tus barcos! \n" << endl;
         return true;
     }
     else
     {
         tablero[x][y] = 3;
-        cout << "La computadora fallo!" << endl;
+        cout << "\n La computadora fallo! \n" << endl;
         return false;
     }
 }
