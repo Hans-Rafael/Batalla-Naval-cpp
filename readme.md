@@ -32,9 +32,9 @@ Para jugar a Batalla Naval, necesitas tener instalado un compilador C++ y un ent
 
 1. Compila el código fuente utilizando un compilador C++.
 2. Ejecuta el programa.
-3. Elige entre jugar como jugador o contra la computadora.
-4. Si juegas contra la computadora, el juego alternará turnos entre los jugadores hasta que uno de ellos hunda todos los barcos del otro.
---5. Si juegas contra otro jugador, el juego alternará turnos entre los jugadores hasta que uno de ellos hunda todos los barcos del otro.
+3. Elige entre jugar contra la computadora o contra otra persona en la misma computadora.
+4. En el modo contra la computadora, el juego alternará turnos hasta que uno de los dos se quede sin barcos.
+5. En el modo contra otra persona, cada jugador coloca sus barcos por separado y luego se alternan los turnos. El tablero enemigo se muestra ocultando los barcos.
 
 
 ## Licencia
