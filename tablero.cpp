@@ -112,10 +112,10 @@ void colocarBarcos(int tablero[TAM][TAM])
             }
             else
             {
-                cout << "Posicion invalida. Intenta de nuevo.\n";
+                cout << "Posición inválida. Intenta de nuevo.\n";
             }
-            // si es valido: poner 1 en tablero[x][y] y colocada = true
-            // si no: "Posicion invalida"
+            // si es válido: poner 1 en tablero[x][y] y colocada = true
+            // si no: "Posición inválida"
         }
     }
 }
@@ -217,13 +217,13 @@ bool realizarDisparoIa(int tablero[TAM][TAM])
     if (tablero[x][y] == 1)
     {
         tablero[x][y] = 2;
-        cout << "\n La computadora impacto uno de tus barcos! \n" << endl;
+        cout << "\n La computadora impactó uno de tus barcos! \n" << endl;
         return true;
     }
     else
     {
         tablero[x][y] = 3;
-        cout << "\n La computadora fallo! \n" << endl;
+        cout << "\n La computadora falló! \n" << endl;
         return false;
     }
 }

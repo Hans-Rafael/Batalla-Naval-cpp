@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// Tableros globales: accesibles desde cualquier funcion de este archivo
+// Tableros globales: accesibles desde cualquier función de este archivo
 int tableroJugador[TAM][TAM];
 int tableroOponente[TAM][TAM];
 bool turnoJugadorActivo = true; // true = turno jugador, false = turno computadora
@@ -73,7 +73,7 @@ void turnoJugador()
         {
             limpiarConsola();
             cout << RED;
-            cout << "Coordenadas invalidas. Intenta de nuevo.\n";
+            cout << "Coordenadas inválidas. Intenta de nuevo.\n";
             cout << RESET;
         }
     }
@@ -89,8 +89,8 @@ void turnoComputadora()
     cout << "\n--- Turno de la computadora ---\n";
 
     // llamar realizarDisparoIa(tableroJugador)
-    // si devuelve true  -> "La computadora impacto uno de tus barcos!"
-    // si devuelve false -> "La computadora fallo!"
+    // si devuelve true  -> "La computadora impactó uno de tus barcos!"
+    // si devuelve false -> "La computadora falló!"
     realizarDisparoIa(tableroJugador);
     turnoJugadorActivo = true;
     // pausar();
@@ -139,7 +139,7 @@ void turnoJugadorContraJugador(int jugador)
         else
         {
             limpiarConsola();
-            cout << RED << "Coordenadas invalidas. Intenta de nuevo.\n"
+            cout << RED << "Coordenadas inválidas. Intenta de nuevo.\n"
                  << RESET;
         }
     }
@@ -189,7 +189,7 @@ void jugar()
     if (quedanBarcos(tableroJugador))
         cout << "¡Ganaste!\n";
     else
-        cout << "La computadora gano.\n";
+        cout << "La computadora ganó.\n";
     cin.ignore();
     cin.get();
 }
@@ -224,9 +224,9 @@ void jugarDosJugadores()
     mostrarTablero(tableroOponente, false);
 
     if (quedanBarcos(tableroJugador))
-        cout << "\nGano el jugador 1!\n";
+        cout << "\nGanó el jugador 1!\n";
     else
-        cout << "\nGano el jugador 2!\n";
+        cout << "\nGanó el jugador 2!\n";
     pausar();
 }
 
@@ -259,7 +259,7 @@ void menu()
             cout << "Gracias por jugar!\n";
             break;
         default:
-            cout << "Opcion invalida\n";
+            cout << "Opción inválida\n";
         }
     } while (opcion != 3);
 }

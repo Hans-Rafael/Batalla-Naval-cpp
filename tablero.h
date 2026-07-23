@@ -1,5 +1,5 @@
 #pragma once
-/* avisa compile solo una vez en lugar de
+/* avisa que compile solo una vez en lugar de
 #ifndef MI_CLASE_H
 #define MI_CLASE_H
 // código del archivo .h
