@@ -1,5 +1,6 @@
 #include "tablero.h"
 #include <iostream>
+#include <limits>
 #include <cstdlib>
 #include <ctime>
 
@@ -9,6 +10,13 @@ using namespace std;
 int tableroJugador[TAM][TAM];
 int tableroOponente[TAM][TAM];
 bool turnoJugadorActivo = true; // true = turno jugador, false = turno computadora
+
+void pausar()
+{
+    cout << "Presiona Enter para continuar...\n";
+    cin.ignore();
+    cin.get();
+}
 
 void limpiarConsola()
 {
@@ -52,10 +60,8 @@ void turnoJugador()
             {
                 disparoValido = true;
                 turnoJugadorActivo = false; // Cambiar turno a la computadora
-                //limpiarConsola();
-                cout << "Presiona Enter para continuar...\n";
-                cin.ignore();
-                cin.get();
+                // limpiarConsola();
+                pausar();
             }
             else
             {
@@ -87,11 +93,57 @@ void turnoComputadora()
     // si devuelve false -> "La computadora fallo!"
     realizarDisparoIa(tableroJugador);
     turnoJugadorActivo = true;
-    cout << "Presiona Enter para continuar...\n";
-    cin.ignore();
-    cin.get();
+    // pausar();
+    // cout << "Presiona Enter 2 veces para confirmar y continuar...\n";
+    // cin.ignore();
+    // cin.get();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
+void turnoJugadorContraJugador(int jugador)
+{
+    int (*tableroPropio)[TAM] = jugador == 1 ? tableroJugador : tableroOponente;
+    int (*tableroEnemigo)[TAM] = jugador == 1 ? tableroOponente : tableroJugador;
+    int x, y;
+    bool disparoValido = false;
+
+    limpiarConsola();
+    while (!disparoValido)
+    {
+        cout << "\n--- Turno del jugador " << jugador << " ---\n";
+        cout << "Tu tablero:\n";
+        mostrarTablero(tableroPropio, false);
+        cout << "Tablero enemigo:\n";
+        mostrarTablero(tableroEnemigo, true);
+        cout << "Ingresa coordenadas para disparar:\n";
+        cout << "Fila X: ";
+        cin >> x;
+        cout << "Columna Y: ";
+        cin >> y;
+
+        if (x >= 0 && x < TAM && y >= 0 && y < TAM &&
+            tableroEnemigo[x][y] != 2 && tableroEnemigo[x][y] != 3)
+        {
+            if (realizarDisparo(tableroEnemigo, x, y))
+            {
+                disparoValido = true;
+                limpiarConsola();
+            }
+            else
+            {
+                disparoValido = true;
+                turnoJugadorActivo = !turnoJugadorActivo;
+                pausar();
+            }
+        }
+        else
+        {
+            limpiarConsola();
+            cout << RED << "Coordenadas invalidas. Intenta de nuevo.\n"
+                 << RESET;
+        }
+    }
+}
 /*=================================
           Integrante 1
 ===================================*/
@@ -120,6 +172,7 @@ void jugar()
         {
             turnoJugador();
         }
+
         else
         {
             turnoComputadora();
@@ -141,6 +194,42 @@ void jugar()
     cin.get();
 }
 
+void jugarDosJugadores()
+{
+    inicializarTablero(tableroJugador);
+    inicializarTablero(tableroOponente);
+    turnoJugadorActivo = true;
+
+    cout << "\nTurno del jugador 1 para colocar " << NUM_Barcos << " barcos.\n";
+    colocarBarcos(tableroJugador);
+    pausar();
+
+    limpiarConsola();
+    cout << "\nTurno del jugador 2 para colocar " << NUM_Barcos << " barcos.\n";
+    colocarBarcos(tableroOponente);
+    pausar();
+
+    while (quedanBarcos(tableroJugador) && quedanBarcos(tableroOponente))
+    {
+        if (turnoJugadorActivo)
+            turnoJugadorContraJugador(1);
+        else
+            turnoJugadorContraJugador(2);
+    }
+
+    limpiarConsola();
+    cout << "Tablero final del jugador 1:\n";
+    mostrarTablero(tableroJugador, false);
+    cout << "Tablero final del jugador 2:\n";
+    mostrarTablero(tableroOponente, false);
+
+    if (quedanBarcos(tableroJugador))
+        cout << "\nGano el jugador 1!\n";
+    else
+        cout << "\nGano el jugador 2!\n";
+    pausar();
+}
+
 /*=================================
           Integrante 2
 ===================================*/
@@ -152,22 +241,25 @@ void menu()
     do
     {
         cout << "\n======= Menu =======\n";
-        cout << "1. Jugar\n";
-        cout << "2. Salir\n";
+        cout << "1. Jugar contra la computadora\n";
+        cout << "2. Jugar contra otra persona\n";
+        cout << "3. Salir\n";
         cout << "Selecciona una opcion: ";
         cin >> opcion;
 
         switch (opcion)
         {
         case 1:
-            // llamar jugar()
             jugar();
             break;
         case 2:
+            jugarDosJugadores();
+            break;
+        case 3:
             cout << "Gracias por jugar!\n";
             break;
         default:
             cout << "Opcion invalida\n";
         }
-    } while (opcion != 2);
+    } while (opcion != 3);
 }

@@ -4,6 +4,7 @@
 
 void limpiarConsola();
 void jugar();
+void jugarDosJugadores();
 void menu();
 
 #endif
